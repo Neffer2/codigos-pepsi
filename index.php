@@ -1,7 +1,7 @@
 <?php
     set_time_limit(10000);
 
-    for ($i = 0; $i < 100000; $i++) {
+    for ($i = 0; $i < 500000; $i++) {
         $codigo = claveThree();
         if (
             strpos($codigo, '0o') !== false || strpos($codigo, 'o0') !== false ||
