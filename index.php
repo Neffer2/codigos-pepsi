@@ -1,7 +1,7 @@
 <?php
-    set_time_limit(10000);
+    set_time_limit(100000);
 
-    for ($i = 0; $i < 500000; $i++) {
+    for ($i = 0; $i < 2762000; $i++) {
         $codigo = claveThree();
         if (
             strpos($codigo, '0o') !== false || strpos($codigo, 'o0') !== false ||
@@ -19,10 +19,11 @@
             strpos($codigo, 'LI') !== false || strpos($codigo, '1L') !== false ||
             strpos($codigo, '1l') !== false || strpos($codigo, 'l1') !== false ||
             strpos($codigo, '1l') !== false || strpos($codigo, 'l1') !== false ||
+            strpos($codigo, 'G6') !== false || strpos($codigo, 'G6') !== false ||
             strpos($codigo, 'L1') !== false) {
         } else {
             // echo "$i: ".$codigo;
-            insert($codigo);
+            insert("PA25L".$codigo);
         }
         $codigo = '';
     }
@@ -32,14 +33,14 @@
     /*
     * Clave aleatoria
     */
-    function claveThree($length = 12) { 
-        return substr(str_shuffle("1a2b3c4d5e6f7g8h9i"), 0, $length); 
+    function claveThree($length = 6) { 
+        return substr(str_shuffle("1j2k3l4m5n6o7p8q9r"), 0, $length); 
     }
 
     function insert ($codigo){ 
         try {
             require "conecction.php";
-            $sql = "INSERT IGNORE INTO codigos (cod) VALUES ('".$codigo."')";
+            $sql = "INSERT IGNORE INTO pa25l (cod, prefijo) VALUES ('".$codigo."', 'PA25L')";
             // use exec() because no results are returned
             $conn->exec($sql);
             // echo "New record created successfully <br>";
